@@ -1,2 +1,18 @@
 getrelinfo fxtaname
 vitt
+
+cd daba
+ls FX*
+
+/home/s/sadm/scripts
+vi resizedaba
+/home/s/env
+./Update_spectrum
+
+
+dbu rel fxtnanme cat
+dbr rel fxtaname file fxtananme.SA save
+
+
+questions:
+MINISOS
