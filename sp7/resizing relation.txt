@@ -1,0 +1,2 @@
+getrelinfo fxtaname
+vitt
