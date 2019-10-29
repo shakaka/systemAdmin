@@ -1,4 +1,4 @@
-getrelinfo fxtaname
+getrelinfo fxtaname/FXTRACTA
 vitt
 
 cd daba
@@ -10,9 +10,47 @@ vi resizedaba
 ./Update_spectrum
 
 
+vi /home/s/src/param/baps/odb/crerel/baps.dbu (FXTANAME: ENTRIES)
+vi /home/s/src/system/image/imagepag_all  (SYP0: Frames)
+
+#vi /home/s/src/param/baps/odb/crerel/ui_graph.dbu (fxTracTa: BTREE)
+
+
+
 dbu rel fxtnanme cat
 dbr rel fxtaname file fxtananme.SA save
+dbu rel fxtaname job baps.dbu exec
+FXTRACTA
 
+
+dbr
+rel FXTRACTA
+save
+file FXTRACTA.SA
+save
+x
+
+**
+dbu
+REL fxTracTa VERSION 0 QUALITY 0
+KEY .......
+
+dbr
+rel FXTRACTA
+file FXTRACTA.SA
+restore
+copy 1
+restore
+
+
+
+psg fx
 
 questions:
 MINISOS
+mepr
+immui
+fillrel
+bq
+re k
+re b
