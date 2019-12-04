@@ -1,0 +1,7 @@
+DEVICE=em1
+TYPE=Ethernet
+ONBOOT=yes
+NM_CONTROLLED=no
+BOOTPROTO=none
+HOSTNAME=ad1dshy
+BRIDGE=br0

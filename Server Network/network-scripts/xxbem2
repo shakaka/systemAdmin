@@ -1,0 +1,8 @@
+TYPE=Ethernet
+NAME=bond-slave-em2
+UUID=151086a9-f08d-42c8-8438-f26030bf3c14
+DEVICE=em2
+ONBOOT=yes
+MASTER=bond0
+SLAVE=yes
+NM_CONTROLLED=no
