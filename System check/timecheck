@@ -1,0 +1,13 @@
+timedatectl list-timezones
+timedatectl set-timezone time_zone
+
+======Ex:====================
+timedatectl list-timezones | grep Europe
+Europe/Amsterdam
+Europe/Andorra
+Europe/Athens
+Europe/Belgrade
+Europe/Berlin
+Europe/Bratislava
+…
+timedatectl set-timezone Europe/Prague

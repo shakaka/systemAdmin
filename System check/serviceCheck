@@ -1,0 +1,2 @@
+systemctl status nfs
+cat /etc/samba/smb.conf

@@ -1,0 +1,2 @@
+./configure --disable-credssp --disable-smartcard
+tar -xf rdesktop-1.8.3.tar.gz

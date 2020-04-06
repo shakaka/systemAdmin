@@ -1,0 +1,4 @@
+%s/tc/ka/g
+%s/TC/KA/g
+%s/193.30/193.50/g
+%s/akah/atch/g

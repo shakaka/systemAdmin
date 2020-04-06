@@ -1,0 +1,11 @@
+cd /home/s/src/param/security/config/
+tar -cvzf NRPE_CONF.tar.gz NRPE_CONF
+rm -rf NRPE_CONF
+scp -r root@ad1dska:/home/s/src/param/security/config/NRPE_CONF /home/s/src/param/security/config/
+
+cd /usr/local/nagios/
+tar -cvzf libexec.tar.gz libexec
+rm -rf libexec
+scp -r root@ad1dska:/usr/local/nagios/libexec /usr/local/nagios/
+
+systemctl restart nrpe
