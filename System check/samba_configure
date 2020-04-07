@@ -1,0 +1,17 @@
+mkdir /home/sharedpoint
+vi /home/sharedpoint/test
+semanage fcontext -a -t samba_share_t "/home/sharedpoint(/.*)?"
+restorecon -R -v /home/sharedpoint
+vi /etc/samba/smb.conf
+
+
+[sharedpoint]
+comment = Common share directory
+valid users = spsy, %S, %D%w%S
+path = /home/sharedpoint
+writeable = yes
+
+
+smbpasswd -a spsy
+  r?samba4N?t
+systemctl start smb.service
