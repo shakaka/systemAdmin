@@ -1,0 +1,21 @@
+vi /var/opt/oracle/oratab
+
+scada:/u01/app/oracle/product/12.1.0:Y
+dor:/u01/app/oracle/product/12.1.0:Y
+jasp:/u01/app/oracle/product/12.1.0:Y
+his:/u01/app/oracle/product/12.1.0:Y
+
+(b. ) Remove the 'Y' for jasp and replace with 'N'. Then save and quit.
+
+scada:/u01/app/oracle/product/12.1.0:Y
+dor:/u01/app/oracle/product/12.1.0:Y
+jasp:/u01/app/oracle/product/12.1.0:N
+his:/u01/app/oracle/product/12.1.0:Y
+
+(c . ) stop the oralce for Jasper
+
+~]# oracle_stop jasper
+
+(d. ) Verify if jasper still running.
+
+~]# psg pmon

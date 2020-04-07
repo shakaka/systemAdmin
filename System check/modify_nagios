@@ -7,5 +7,11 @@ cd /usr/local/nagios/
 tar -cvzf libexec.tar.gz libexec
 rm -rf libexec
 scp -r root@ad1dska:/usr/local/nagios/libexec /usr/local/nagios/
+chmod 775 /usr/local/nagios/libexec
+
 
 systemctl restart nrpe
+
+=======================================================
+vi /home/s/src/param/security/config/NRPE_CONF/nrpe.cfg
+$SPECPATH/sadm/inst/X86lx/bs_scripts/IU99nagios install
