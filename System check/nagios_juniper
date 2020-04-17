@@ -1,7 +1,7 @@
 set snmp location "TP"
 set snmp community junossnmp authorization read-only
-set snmp community junossnmp clients 193.10.10.253/24
+set snmp community junossnmp clients 193.10.100.253/24
 set snmp trap-group ostc-tr-gr version v2
 set snmp trap-group ostc-tr-gr categories chassis
 set snmp trap-group ostc-tr-gr categories link
-set snmp trap-group ostc-tr-gr targets 193.10.10.50
+set snmp trap-group ostc-tr-gr targets 193.10.100.50
