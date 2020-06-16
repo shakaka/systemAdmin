@@ -1,0 +1,24 @@
+  cat /etc/redhat-release
+SP7 scada
+  envg RELEASE
+SCADA APM
+  cat /etc/spectrum-release
+oracle
+  envg ORACLE_HOME
+
+  cto -ver
+  gcc -v
+  gfortran -v
+  javac -version
+
+MMS
+  cd /home/s/sadm/inst/X86lx/bs_scripts
+  grep MMSEASE_VERSION IU71mmsease
+
+/usr/local/uvscan/uvscan --version
+
+
+lscpu
+free -mh
+df -kh -t ext4 --total
+dmidecode -t memory
