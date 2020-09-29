@@ -1,0 +1,79 @@
+I've placed the latest integrated source code set and TC data (dated 17-June-2020 6pm) in Taiwan TC DEV ADM server ad1dstc:/home/TO_SLT_20200617.
+(i) Source code set - S_sp7230_ad1dstc_20200617_181406.tar.gz
+(ii) TC SDB - DOR_RT_SG_TC_2020-06-17.DMP.gz
+
+Please refer the guide below to update all 5 DEV system.
+
+Prerequisite:
+1.) Existing system backup is done (source code, DOR_RT, ODB)
+2.) No IMM job exists
+3.) Latest source code (S_sp7230_ad1dstc_20200617_181406.tar.gz) is copied to designated ADM server /home/s
+4.) *Latest TC data (DOR_RT_SG_TC_2020-06-17.DMP.gz) is copied to ad1dstc $ORACLE_HOME/rdbms/log
+5.) Provided system update guide is available for reference
+6.) System update is executed on primary ADM server unless otherwise stated
+
+ * For TC system update only
+
+
+Procedure to update DEV system using source code dated 17-June-2020 6pm:
+
+1.) Untar the latest source code:
+root> cd /home/s; tar xfvz S_sp7230_ad1dstc_20200617_181406.tar.gz
+
+
+2.) Remove irrelevant Spectrum environmental profile:
+spsy> cd /home/s/env
+spsy> rm -f Profile_0220.spectrum_im_<not-own-hostname> Profile_0115.spectrum_subs_<not-own-hostname>
+spsy> . ~/.proifle; envg SPECSUBS | grep -v 0      //return Spectrum Subsystem (SPECSUBS) configuration for DEV system
+
+
+3.) Execute incremental buster. Check log file for build error (keyword: BLD_ERR):
+spsy> . ~/.profile; time ./buster -Onone -all -e -o /home/spsy/buster_inc_20200618_1239.log
+
+
+4.) Run Windows ODV compilation on Primary Domain Controller after incremental buster is successful. You may run this step in parallel with Step 5,6,7,8 but not Step 9 (together with IMMImpPrep)!
+
+
+5.) Recreate HIS and SCADA SID:
+spsy> . ~/.profile; time ./RDBCREATE -auto -o his
+spsy> . ~/.profile; time ./RDBCREATE -auto -o scada
+
+NOTE: You may run RDBCREATE concurrently.
+
+spsy> oracle_start his scada
+spsy> psg pmon            // return result: ora_pmon_dor, ora_pmon_his, ora_pmon_scada
+
+
+6.) * Restore TC SDB. Refer to System_Update guide on how to restore DOR_RT.
+
+
+7.) Patch defect/PE-variance fixes:
+spsy> cdm; MIMCSOS -C ADM Pr
+spsy> cd /home/s/sys/spcc/DataModel/Update
+spsy> ./Tools/scripts/UpgradeParam.sh ./Data/220to230/EMS00130371/Config/DmUpgradeConfig.xml      //take about 1 minute
+
+spsy> cd /home/s/src/param/param_scripts
+spsy> sqlplus HISU/h1s_pa55@HIS
+SQL> @Install_EMS00129526.sql
+SQL> commit;
+SQL> quit
+
+
+8.) Copy selected ODB relation to be restored prior IMMImpPrep execution:
+spsy> cd /home/backup/odb/<latest ODB backup dir>
+spsy> cp -p {CARIGHT.SA,FXCUCONF.SA,OUTOFFAS.SA,USERAOC.SA,USERPASS.SA,USERROLE.SA} /home/s/dbr_master
+
+
+9.) Execute incremental bulktango:
+spsy> cd /home/s/src/param/param_scripts
+spsy> . ~/.profile; time ./IMMImpPrep -m AllPrepAndTransfer
+
+NOTE: Make sure Step 4 (Windows ODV compilation is finished before you start running IMMImpPrep script!
+
+
+10.) Update other DEV servers:
+spsy> cdm; SOS updawipe others   //make sure each server (except ADM) return 0 upon successful execution
+
+
+11.) Run up DEV system:
+spsy> cdm; SOS init all  // ALL servers return PC complete state
