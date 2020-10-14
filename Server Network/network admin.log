@@ -1,0 +1,5 @@
+ip link delete dev bond0
+
+
+
+nmcli con add type bond/bridge/ethernet ifname name bond.options "mode=4,miimon=100" ipv4.addresses 193.30.10.100/24 ipv4.gateway 193.30.10.254 ipv4.method manual master br0/bond0
