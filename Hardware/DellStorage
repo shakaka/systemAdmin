@@ -1,0 +1,51 @@
+1.)  Connect all the necessary physical connection to the main server, i.e. the fibre optic cable
+2.)  Download and place the DELL_MDSS_Consolidated_RDVD_6_5_0_1.iso (installation media) in the server.
+3.) Create a directory to mount the DELL installation directory
+~]# mkdir /mnt/to_mount
+On this example, 'to_mount' is the directory created to mount for iso file.
+4.) Mount the iso file using iso9660 -o loop to the created mount directory
+~]# mount -t iso9660 -o loop /home/Richard/DELL_MDSS_Consolidated_RDVD_6_5_0_1.iso /mnt/to_mount
+5.) Before you run the silent install command, make sure to run the following script(s) to install prerequisite packages (vim Readme.txt for more info).
+Inside of the mount directory, run linux_hostnameupdates.sh as this is running on Red Hat Enterprise Linux 7.5.
+cd /mnt/to_mount
+~]# ./linux_hostnameupdates.sh
+6.) After installation of DELL, open and configure the SAN from utility manager (make sure on the root user):
+Run SMclient under /opt/dell/mdstoragesoftware/mdstoragemanager/client/
+~]# ./opt/dell/mdstoragesoftware/mdstoragemanager/client/SMclient
+7.) Setting up Multipath devices on linux server (source master):
+Make sure machine is installed with device-mapper-multipath program
+Do a yum search device-mapper-multipath to list out the repository of multipath packages
+Make sure user_friendly_name is set to yes for /etc/multipath.conf file
+Use multipath -v3 to print out multipath-able devices
+Edit the multipath configuration files if necessary:
+/etc/multipath.conf
+/etc/multipath/bindings
+/etc/multipath/wwids
+Add in the wwids for the devices if they are not shown on lsblk as multipath-devices
+Restart multipathd for the changes to take place, or if not restart the machine if is necessary
+Verify multipath configuration using
+dmsetup ls --target=multipath
+multipath -ll
+If this is a fresh device (being installed for the first time), use gparted utility to create a partition table (gpt) on the SAN
+Format the device using mkfs.ext4 /dev/mapper/mpatha1
+Reboot the system for the changes to take place
+8. ) Add the UUID of multipath to /etc/fstab.
+run the blkid on root user to show to UUID
+~]# blkid
+e.g.
+/dev/mapper/mpatha: UUID="cf3b6b29-ba78-4753-bd29-dc01178c2f4f" TYPE="ext4"
+9.) Before mounting the multipath to HIS directory, make sure to stop the running HIS on oracle
+~]# oracle_stop his
+10.) Then mount the partition using /dev/mapper/mapatha1 (this will reflect on the linux server after reboot, enter lsblk command to determine)
+~]# mount /dev/mapper/mapatha1 /orac/u01/oradata/his
+11.) Start the HIS on oracle
+~]# oracle_start his
+NOTE: After mounted the HIS on SAN, take into consideration to run the RDBCREATE for HIS on the source master to avoid failure running the his.
+
+
+
+
+=======================
+
+yum install device-mapper-multipath
+mpathconf --enable --user_friendly_names y --find_multipaths y --with_multipathd y
