@@ -1,0 +1,12 @@
+sudo apt-get install git
+git clone https://github.com/rasa/vmware-tools-patches.git
+cd vmware-tools-patches
+sudo ./patched-open-vm-tools.sh
+
+
+>>The device 'XXX' was unable to connect to its ideal host controller. An attempt will be made to connect this device to the available host controller. This might result in undefined behavior for this device.
+1. Power off the Debian GOS.
+2. Click Settings==>USB&Bluetooth, you would see the inserted USB device detected.
+3.Go to Advanced USB options,
+. USB compatibility: USB 3.0
+4. Power on the Debian VM again and check lsusb output whether USB 3.0 device works or not.

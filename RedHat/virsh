@@ -1,0 +1,3 @@
+list --all
+start DOMAIN --console
+console DOMAIN
