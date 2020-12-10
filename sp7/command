@@ -1,0 +1,4 @@
+/etc/niss/niss -c
+
+coreDump
+gdb toev coreDump_ds

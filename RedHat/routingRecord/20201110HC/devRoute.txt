@@ -1,0 +1,47 @@
+HOSTNAME=cm1dstc
+NETWORKING_IPV6=no
+IPV6INIT=no
+default via 193.30.10.254 dev bond0
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    0      0        0 bond0
+193.30.10.0     0.0.0.0         255.255.255.0   U     300    0        0 bond0
+193.30.14.0     0.0.0.0         255.255.255.0   U     102    0        0 eno3
+
+
+HOSTNAME=if1dstc
+NETWORKING_IPV6=no
+IPV6INIT=no
+default via 193.30.10.254 dev br0
+193.30.220.0/24 via 193.30.100.254 dev br2
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    425    0        0 br0
+193.30.10.0     0.0.0.0         255.255.255.0   U     425    0        0 br0
+193.30.14.0     0.0.0.0         255.255.255.0   U     426    0        0 br1
+193.30.100.0    0.0.0.0         255.255.255.0   U     427    0        0 br2
+193.30.220.0    193.30.100.254  255.255.255.0   UG    0      0        0 br2
+
+
+HOSTNAME=ui1dstc
+NETWORKING_IPV6=no
+IPV6INIT=no
+default via 193.30.10.254 dev br0
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    0      0        0 br0
+default         gateway         0.0.0.0         UG    425    0        0 br0
+193.30.10.0     0.0.0.0         255.255.255.0   U     425    0        0 br0
+193.30.14.0     0.0.0.0         255.255.255.0   U     426    0        0 br1
+
+
+HOSTNAME=ad1dstc
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    0      0        0 bond0
+193.10.10.0     0.0.0.0         255.255.255.0   U     101    0        0 em4
+193.30.10.0     0.0.0.0         255.255.255.0   U     300    0        0 bond0
+193.30.14.0     0.0.0.0         255.255.255.0   U     100    0        0 em3
+NETWORKING_IPV6=no
+IPV6INIT=no
+default via 193.30.10.254 dev bond0

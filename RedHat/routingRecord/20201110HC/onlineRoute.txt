@@ -1,0 +1,253 @@
+
+HOSTNAME=ad2ostc
+NETWORKING_IPV6=no
+IPV6INIT=no
+default via 193.30.10.254 dev bond0
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    0      0        0 bond0
+link-local      0.0.0.0         255.255.0.0     U     1004   0        0 eno3
+link-local      0.0.0.0         255.255.0.0     U     1006   0        0 bond0
+193.30.10.0     0.0.0.0         255.255.255.0   U     0      0        0 bond0
+193.30.12.0     gateway         255.255.255.0   UG    0      0        0 bond0
+193.30.13.0     gateway         255.255.255.0   UG    0      0        0 bond0
+193.30.14.0     0.0.0.0         255.255.255.0   U     0      0        0 eno3
+
+HOSTNAME=cm1ostc
+NETWORKING_IPV6=no
+IPV6INIT=no
+default via 193.30.10.254 dev bond0
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    0      0        0 bond0
+default         gateway         0.0.0.0         UG    102    0        0 eno3
+default         gateway         0.0.0.0         UG    300    0        0 bond0
+193.30.10.0     0.0.0.0         255.255.255.0   U     300    0        0 bond0
+193.30.14.0     0.0.0.0         255.255.255.0   U     102    0        0 eno3
+
+HOSTNAME=cm2ostc
+NETWORKING_IPV6=no
+IPV6INIT=no
+default via 193.30.10.254 dev bond0
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    101    0        0 eno3
+default         gateway         0.0.0.0         UG    300    0        0 bond0
+193.30.10.0     0.0.0.0         255.255.255.0   U     300    0        0 bond0
+193.30.14.0     0.0.0.0         255.255.255.0   U     101    0        0 eno3
+
+HOSTNAME=if1ostc
+NETWORKING_IPV6=no
+IPV6INIT=no
+193.30.220.0/24 via 193.30.100.254 dev bond1
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    425    0        0 br0
+192.168.122.0   0.0.0.0         255.255.255.0   U     0      0        0 virbr0
+193.30.10.0     0.0.0.0         255.255.255.0   U     425    0        0 br0
+193.30.14.0     0.0.0.0         255.255.255.0   U     426    0        0 br1
+193.30.100.0    0.0.0.0         255.255.255.0   U     300    0        0 bond1
+193.30.220.0    193.30.100.254  255.255.255.0   UG    0      0        0 bond1
+
+HOSTNAME=if2ostc
+NETWORKING_IPV6=no
+IPV6INIT=no
+default via 193.30.10.254 dev bond0
+193.30.220.0/24 via 193.30.100.254 dev bond1
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    425    0        0 br0
+192.168.122.0   0.0.0.0         255.255.255.0   U     0      0        0 virbr0
+193.30.10.0     0.0.0.0         255.255.255.0   U     425    0        0 br0
+193.30.14.0     0.0.0.0         255.255.255.0   U     426    0        0 br1
+193.30.100.0    0.0.0.0         255.255.255.0   U     300    0        0 bond1
+193.30.220.0    193.30.100.254  255.255.255.0   UG    0      0        0 bond1
+
+HOSTNAME=u11ostc
+NETWORKING_IPV6=no
+IPV6INIT=no
+default via 193.30.10.254 dev br0
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    425    0        0 br0
+192.168.122.0   0.0.0.0         255.255.255.0   U     0      0        0 virbr0
+193.30.10.0     0.0.0.0         255.255.255.0   U     425    0        0 br0
+193.30.14.0     0.0.0.0         255.255.255.0   U     426    0        0 br1
+
+HOSTNAME=u12ostc
+NETWORKING_IPV6=no
+IPV6INIT=no
+default via 193.30.10.254 dev eth0
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    100    0        0 ens9
+default         gateway         0.0.0.0         UG    101    0        0 eth0
+193.30.10.0     0.0.0.0         255.255.255.0   U     101    0        0 eth0
+193.30.14.0     0.0.0.0         255.255.255.0   U     100    0        0 ens9
+
+HOSTNAME=u13ostc
+NETWORKING_IPV6=no
+IPV6INIT=no
+default via 193.30.10.254 dev eth0
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    100    0        0 ens9
+default         gateway         0.0.0.0         UG    101    0        0 eth1
+193.30.10.0     0.0.0.0         255.255.255.0   U     101    0        0 eth1
+193.30.14.0     0.0.0.0         255.255.255.0   U     100    0        0 ens9
+
+HOSTNAME=u21ostc
+NETWORKING_IPV6=no
+IPV6INIT=no
+default via 193.30.10.254 dev br0
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    0      0        0 br0
+default         gateway         0.0.0.0         UG    425    0        0 br0
+192.168.122.0   0.0.0.0         255.255.255.0   U     0      0        0 virbr0
+193.30.10.0     0.0.0.0         255.255.255.0   U     425    0        0 br0
+193.30.14.0     0.0.0.0         255.255.255.0   U     426    0        0 br1
+
+HOSTNAME=u22ostc
+NETWORKING_IPV6=no
+IPV6INIT=no
+default via 193.30.10.254 dev eth0
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    100    0        0 eth0
+default         gateway         0.0.0.0         UG    101    0        0 ens9
+193.30.10.0     0.0.0.0         255.255.255.0   U     100    0        0 eth0
+193.30.14.0     0.0.0.0         255.255.255.0   U     101    0        0 ens9
+
+HOSTNAME=u23ostc
+NETWORKING_IPV6=no
+IPV6INIT=no
+default via 193.30.10.254 dev eth0
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    100    0        0 eth0
+default         gateway         0.0.0.0         UG    101    0        0 ens9
+193.30.10.0     0.0.0.0         255.255.255.0   U     100    0        0 eth0
+193.30.14.0     0.0.0.0         255.255.255.0   U     101    0        0 ens9
+
+HOSTNAME=uc1ostc
+NETWORKING_IPV6=no
+IPV6INIT=no
+default via 193.30.10.254 dev eth0
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    101    0        0 eth1
+193.30.10.0     0.0.0.0         255.255.255.0   U     101    0        0 eth1
+193.30.14.0     0.0.0.0         255.255.255.0   U     100    0        0 ens9
+
+HOSTNAME=uc2ostc
+NETWORKING_IPV6=no
+IPV6INIT=no
+default via 193.30.10.254 dev eth0
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    100    0        0 ens9
+default         gateway         0.0.0.0         UG    101    0        0 eth1
+193.30.10.0     0.0.0.0         255.255.255.0   U     101    0        0 eth1
+193.30.14.0     0.0.0.0         255.255.255.0   U     100    0        0 ens9
+
+HOSTNAME=ad1estc
+NETWORKING_IPV6=no
+IPV6INIT=no
+default via 193.30.12.254 dev bond0
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    0      0        0 bond0
+link-local      0.0.0.0         255.255.0.0     U     1002   0        0 em1
+link-local      0.0.0.0         255.255.0.0     U     1003   0        0 em2
+link-local      0.0.0.0         255.255.0.0     U     1004   0        0 em3
+link-local      0.0.0.0         255.255.0.0     U     1006   0        0 bond0
+193.30.10.0     gateway         255.255.255.0   UG    0      0        0 bond0
+193.30.12.0     0.0.0.0         255.255.255.0   U     0      0        0 bond0
+193.30.13.0     gateway         255.255.255.0   UG    0      0        0 bond0
+193.30.14.0     0.0.0.0         255.255.255.0   U     0      0        0 em3
+
+HOSTNAME=cm1estc
+NETWORKING_IPV6=no
+IPV6INIT=no
+default via 193.30.12.254 dev bond0
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    0      0        0 bond0
+default         gateway         0.0.0.0         UG    102    0        0 eno3
+default         gateway         0.0.0.0         UG    300    0        0 bond0
+193.30.12.0     0.0.0.0         255.255.255.0   U     300    0        0 bond0
+193.30.14.0     0.0.0.0         255.255.255.0   U     102    0        0 eno3
+
+HOSTNAME=if1estc
+NETWORKING_IPV6=no
+IPV6INIT=no
+default via 193.30.12.254 dev br0
+193.30.220.0/24 via 193.30.202.254 dev bond1
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    425    0        0 br0
+192.168.122.0   0.0.0.0         255.255.255.0   U     0      0        0 virbr0
+193.30.12.0     0.0.0.0         255.255.255.0   U     425    0        0 br0
+193.30.14.0     0.0.0.0         255.255.255.0   U     426    0        0 br1
+193.30.202.0    0.0.0.0         255.255.255.0   U     300    0        0 bond1
+193.30.220.0    193.30.202.254  255.255.255.0   UG    0      0        0 bond1
+
+HOSTNAME=u11estc
+NETWORKING_IPV6=no
+IPV6INIT=no
+default via 193.30.12.254 dev br0
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    0      0        0 br0
+default         gateway         0.0.0.0         UG    425    0        0 br0
+192.168.122.0   0.0.0.0         255.255.255.0   U     0      0        0 virbr0
+193.30.12.0     0.0.0.0         255.255.255.0   U     425    0        0 br0
+193.30.14.0     0.0.0.0         255.255.255.0   U     426    0        0 br1
+
+HOSTNAME=u12estc
+NETWORKING_IPV6=no
+IPV6INIT=no
+default via 193.30.12.254 dev eth0
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    100    0        0 eth0
+default         gateway         0.0.0.0         UG    101    0        0 ens9
+193.30.12.0     0.0.0.0         255.255.255.0   U     100    0        0 eth0
+193.30.14.0     0.0.0.0         255.255.255.0   U     0      0        0 ens9
+193.30.14.0     0.0.0.0         255.255.255.0   U     101    0        0 ens9
+
+HOSTNAME=u13estc
+NETWORKING_IPV6=no
+IPV6INIT=no
+default via 193.30.12.254 dev eth0
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    100    0        0 eth0
+default         gateway         0.0.0.0         UG    101    0        0 ens9
+193.30.12.0     0.0.0.0         255.255.255.0   U     100    0        0 eth0
+193.30.14.0     0.0.0.0         255.255.255.0   U     101    0        0 ens9
+
+HOSTNAME=uc1estc
+NETWORKING_IPV6=no
+IPV6INIT=no
+default via 193.30.10.254 dev eth0
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    101    0        0 eth0
+193.30.12.0     0.0.0.0         255.255.255.0   U     101    0        0 eth0
+193.30.14.0     0.0.0.0         255.255.255.0   U     100    0        0 ens9
+
+HOSTNAME=ad1ostc
+NETWORKING_IPV6=no
+IPV6INIT=no
+default via 193.30.10.254 dev bond0
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         gateway         0.0.0.0         UG    0      0        0 bond0
+link-local      0.0.0.0         255.255.0.0     U     1004   0        0 em3
+link-local      0.0.0.0         255.255.0.0     U     1005   0        0 em4
+link-local      0.0.0.0         255.255.0.0     U     1006   0        0 bond0
+193.10.10.0     0.0.0.0         255.255.255.0   U     0      0        0 em4
+193.30.10.0     0.0.0.0         255.255.255.0   U     0      0        0 bond0
+193.30.14.0     0.0.0.0         255.255.255.0   U     0      0        0 em3
