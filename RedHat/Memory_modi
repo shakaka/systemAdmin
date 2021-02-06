@@ -1,0 +1,43 @@
+Refer to procedure below on how to permanently add kernel Boot parameter in grub configuration file
+1.) Check current allocated RAM for the server:
+root> free -m
+              total        used        free      shared  buff/cache   available
+Mem:         257788        2673      250598        2691        4516      251447
+Swap:         10239           0       10239
+
+2.) Edit /etc/sysconfig/grub by appending parameter GRUB_CMDLINE_LINUX with "mem=<half of memory>" (see highlighted line in yellow)
+root> cat /etc/sysconfig/grub
+GRUB_TIMEOUT=5
+GRUB_DISTRIBUTOR="$(sed 's, release .*$,,g' /etc/system-release)"
+GRUB_DEFAULT=saved
+GRUB_DISABLE_SUBMENU=true
+GRUB_TERMINAL_OUTPUT="console"
+GRUB_CMDLINE_LINUX="ipv6.disable=1 crashkernel=auto mem=128G"
+GRUB_DISABLE_RECOVERY="true"
+
+NOTE: The setting above is compatible with BIOS mode for most Spectrum physical and VM servers. If the server is UEFI mode (e.g. Install server), edit additionally the file /boot/efi/EFI/redhat/grub.cfg by appending the same parameter (e.g. mem=128G) at each line starts with linuxefi keyword.
+
+
+
+3.) Re-generate grub configuration file:
+root> grub2-mkconfig -o /etc/grub2.cfg
+Generating grub configuration file ...
+Found linux image: /boot/vmlinuz-3.10.0-862.37.1.el7.x86_64
+Found initrd image: /boot/initramfs-3.10.0-862.37.1.el7.x86_64.img
+Found linux image: /boot/vmlinuz-3.10.0-862.14.4.el7.x86_64
+Found initrd image: /boot/initramfs-3.10.0-862.14.4.el7.x86_64.img
+Found linux image: /boot/vmlinuz-0-rescue-3846d6185b49432a8ce347f42184df0e
+Found initrd image: /boot/initramfs-0-rescue-3846d6185b49432a8ce347f42184df0e.img
+done
+
+4.) Reboot the server to make the grub change effective:
+root> reboot
+
+5.) Check the newly allocated memory after reboot is complete:
+root>  free -m
+              total        used        free      shared  buff/cache   available
+Mem:         127765        1097      125717         161         949      125735
+Swap:         10239           0       10239
+
+
+In order to revert the change, we just need to remove the added parameter in the particular file by applying the same steps as above.
