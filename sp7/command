@@ -2,3 +2,4 @@
 
 coreDump
 gdb toev coreDump_ds
+dg_del_all_arch

@@ -1,0 +1,2 @@
+tail -f /var/log/mess | grep dhcp
+/etc/dhcp/dhcp.conf

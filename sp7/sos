@@ -1,0 +1,43 @@
+dgstat >> primary
+
+EOS STOP all
+Online primary SOS stop others (psg SOS to confirm if it is stopped)
+DEV SOS stop others
+
+
+(a.)  Spectrum Run down sequence on PROD:
+Pre-requisite: Dataguard for DOR resides in primary ADM on MCC ( check via 'dgstat dor')
+(i.) BCC
+spsy@ad1ostc> ssh ad1estc
+spsy@ad1estc> cdm; SOS stop others <-- STOPSOS non-adm servers first
+spsy@ad1estc> psg SOS <-- make sure no result is returned or else the STOPSOS is still being executed. You may also go to each Spectrum server to 'tailf' to check if the STOPSOS has exited successfully.
+spsy@ad1estc> STOPSOS &
+
+(ii.) MCC
+spsy@ad1estc> exit
+spsy@ad1ostc> cdm; SOS stop others <-- STOPSOS non-adm servers first
+spsy@ad1ostc> psg SOS <-- make sure no result is returned or else the STOPSOS is still being executed
+spsy@ad1ostc> STOPSOS &
+
+(iii.) QAS (DEV)
+Execute the same steps stated in (a.) (i.) but on DEV.
+
+
+(b.) Spectrum Run up sequence on PROD:
+Pre-requisite: Dataguard for DOR resides in primary ADM on MCC ( check via 'dgstat dor')
+
+(i.) MCC
+spsy@ad1ostc> cdm; INITSOS -C ADM Pr &
+spsy@ad1ostc> ssa <-- make sure Primary ADM runs up successfully (PC Complete state) before running up other Spectrum Servers
+spsy@ad1ostc> cdm; SOS init cm1ostc u11ostc u12ostc u13ostc if1ostc uc1ostc <-- run up first leg of Spectrum Servers in MCC
+spsy@ad1ostc> ssa <-- check the Spectrum servers are able to become PC complete
+spsy@ad1ostc> cdm; SOS init ad2ostc cm2ostc u21ostc u22ostc u23ostc if2ostc uc2ostc <-- run up second leg of Spectrum Servers in MCC
+
+(ii.) BCC
+spsy@ad1ostc> ssh ad1estc
+spsy@ad1estc> cdm; SOS init
+spsy@ad1estc> ssa <-- make sure ADM runs up successfully (PC Complete state) before running up other Spectrum Servers
+spsy@ad1estc> cdm; SOS init others <-- use 'ssa' to check if the status becomes PC complete
+
+(iii.) QAS (DEV)
+Execute the same steps stated in (b.) (ii.) but on DEV.
